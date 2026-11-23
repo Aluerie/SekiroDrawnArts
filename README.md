@@ -25,7 +25,7 @@ drawn_arts/
 ```
 
 1. Build with `cargo build --release` and copy `target/release/drawn_arts.dll` into `drawn_arts/`.
-2. Optionally, extract the combat art images as described in [Wheel images](#-wheel-images).
+2. Optionally, extract the combat art images as described in [Wheel images](#wheel-images).
 3. Double-click `drawn_arts.me3`, or run `me3 launch --game sekiro --profile path/to/drawn_arts.me3`.
 
 To install it elsewhere, copy `drawn_arts.me3` and the `drawn_arts/` folder together.
@@ -39,6 +39,8 @@ The mod writes `drawn_arts.log` next to the DLL.
 Edit `drawn_arts.ini` to change the hold key, the wheel key, the default art and which arts the wheel shows. The file lists the key names and combat art ids.
 
 The game still sees the hold key and the wheel key, so pick keys the game doesn't use or unbind them in the game's settings. For example, if Shift dodges in your keybinds, every Shift press also dodges.
+
+<a id="wheel-images"></a>
 
 ### 🖼️ Wheel images
 
