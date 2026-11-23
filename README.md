@@ -14,7 +14,12 @@ Only the Steam version 1.06 is supported. The mod calls game functions at fixed 
 
 This mod is loaded by [Mod Engine 3](https://github.com/garyttierney/me3) (me3). It isn't a `dinput8.dll` and doesn't work with Mod Engine 1.
 
-The repository is laid out the way me3 expects:
+The quickest way: download `SekiroDrawnArts-v<version>.zip` from the
+[latest release](https://github.com/Aluerie/SekiroDrawnArts/releases/latest), unzip it anywhere, and double-click
+`drawn_arts.me3` (or run `me3 launch --game sekiro --profile drawn_arts.me3` in that folder). The zip holds the DLL,
+the settings and a ready-made profile. It doesn't hold the wheel's images; see [Wheel images](#wheel-images) to add them.
+
+The release folder, like this repository, is laid out the way me3 expects:
 
 ```text
 drawn_arts.me3        the me3 profile
@@ -23,6 +28,8 @@ drawn_arts/
 ├─ drawn_arts.dll     built, not committed
 └─ icons/             extracted from the game, not committed
 ```
+
+To build it yourself instead:
 
 1. Build with `cargo build --release` and copy `target/release/drawn_arts.dll` into `drawn_arts/`.
 2. Optionally, extract the combat art images as described in [Wheel images](#wheel-images).
@@ -52,6 +59,31 @@ To use the game's own icons, unpack `menu/hi/01_common.tpf.dcx` and `menu/hi/01_
 pip install pillow
 python tools/extract_icons.py <01_common-tpf-dcx folder> <01_common-sblytbnd-dcx folder> drawn_arts/icons
 ```
+
+## 🛠️ Development
+
+```sh
+cargo test            # config parsing and wheel aiming tests
+cargo build --release # target/release/drawn_arts.dll
+```
+
+To get the ready-to-go folder that players download, run `scripts\package.ps1`. It builds the DLL and creates
+`dist\SekiroDrawnArts\` (the `.me3` profile, `drawn_arts\` with the DLL and settings, README) and
+`dist\SekiroDrawnArts-v<version>.zip`. The wheel images are left out, because they're the game's own art.
+
+### 🤖 CI
+
+[.github/workflows/ci.yml](.github/workflows/ci.yml) runs on every push and pull request: `cargo fmt --check`,
+`cargo clippy` with warnings as errors, `cargo test`, then the packaging script. The packaged folder can be downloaded
+from the run's "Artifacts" section.
+
+### 🚀 Releasing
+
+1. Bump `version` in `Cargo.toml` and run `cargo build` so `Cargo.lock` picks it up. Commit both.
+2. Tag the commit `v<version>`, e.g. `v0.2.0`, and push the tag.
+
+CI then checks that the tag matches `Cargo.toml`, builds and tests everything, and publishes a GitHub Release with the
+zip attached and release notes generated from the commits since the last tag.
 
 ## 🙏 Credits
 
