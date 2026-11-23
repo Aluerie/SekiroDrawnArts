@@ -3,6 +3,7 @@ name = "drawn-arts"
 version = "0.1.0"
 edition = "2024"
 description = "Sekiro mod: hold a key to equip a combat art, release to unequip; a wheel to pick which art."
+license = "MIT"
 
 [lib]
 name = "drawn_arts"
