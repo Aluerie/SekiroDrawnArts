@@ -1,0 +1,6 @@
+/target
+
+# Built, written at runtime, or extracted from the game.
+/drawn_arts/*.dll
+/drawn_arts/*.log
+/drawn_arts/icons/

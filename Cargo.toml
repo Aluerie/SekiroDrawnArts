@@ -1,0 +1,32 @@
+[package]
+name = "drawn-arts"
+version = "0.1.0"
+edition = "2024"
+description = "Sekiro mod: hold a key to equip a combat art, release to unequip; a wheel to pick which art."
+
+[lib]
+name = "drawn_arts"
+crate-type = ["cdylib"]
+
+[dependencies]
+anyhow = "1.0.104"
+hudhook = { version = "0.9.3", default-features = false, features = ["dx11"] }
+image = { version = "0.25.10", default-features = false, features = ["png"] }
+log = "0.4.35"
+
+[dependencies.windows]
+version = "0.62"
+features = [
+    "Win32_Devices_HumanInterfaceDevice",
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+    "Win32_System_Diagnostics_Debug",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Threading",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_WindowsAndMessaging",
+]
+
+[profile.release]
+lto = true
+codegen-units = 1

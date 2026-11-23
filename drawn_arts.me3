@@ -1,0 +1,9 @@
+profileVersion = "v1"
+
+[[supports]]
+game = "sekiro"
+
+[[natives]]
+path = "drawn_arts/drawn_arts.dll"
+# me3 calls this export on its own thread once the game is running; it installs the hooks.
+initializer = { function = "drawn_arts_init" }
